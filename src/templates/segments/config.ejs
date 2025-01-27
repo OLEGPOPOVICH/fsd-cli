@@ -1,0 +1,19 @@
+import { createLoaderCreatorWithPrefix } from '@shared/lib/store-loader';
+
+/** Наименование модели */
+const modelName = '<%= sliceName %>';
+
+/**
+* Создатель лоадера
+* @param {string} name - наименование лоадера
+* @returns {string} - лоадер
+*/
+const createLoader = createLoaderCreatorWithPrefix(modelName);
+
+/** Конфигурация модели */
+export const config = {
+  modelName,
+  loaders: {
+    stub: createLoader('stub'),
+  },
+} as const;

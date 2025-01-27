@@ -1,0 +1,33 @@
+{
+  "include": [
+    "src/**/*",
+    "node_modules/@types/node/globals.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/app",
+    "src/processes",
+    "src/pages",
+    "src/widgets",
+    "src/features",
+    "src/entities",
+    "src/shared"
+  ],
+  "compilerOptions": {
+    "target": "es6",
+    "jsx": "react",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "paths": {
+      "@src/*": ["src/*"],
+      "@shared/*": ["src/shared/*"],
+      "@commands/*": ["src/commands/*"]
+    }
+  }
+}

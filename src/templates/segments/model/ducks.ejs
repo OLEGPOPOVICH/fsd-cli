@@ -1,0 +1,50 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { createActionCreatorWithPrefix } from '@shared/lib/store';
+
+import { config } from '../config';
+import { ModelState } from './types';
+
+/** Начальное состояние модели */
+const initialState: ModelState = {
+  stub: false,
+};
+
+/** Слайс модели */
+const modelSlice = createSlice({
+  name: config.modelName,
+  initialState,
+  reducers: {
+    /**
+    * Установка признака заглушки
+    * @param {ModelState} state - текущее состояние
+    * @param {boolean} payload - признак
+    * @returns {void}
+    */
+    setStub: (
+      state: ModelState,
+      { payload }: PayloadAction<boolean>,
+    ): void => {
+      state.stub = payload;
+    },
+    /**
+    * Сброс состояние модели
+    * @returns {ModelState} - состояние
+    */
+    reset: (): ModelState => initialState,
+  },
+});
+
+/** Создатель действий */
+const createAction = createActionCreatorWithPrefix(config.modelName);
+
+/** Экшен заглушка */
+const actionStub = createAction('actionStub');
+
+export const { reducer } = modelSlice;
+
+/** Действия */
+export const actions = {
+  ...modelSlice.actions,
+  actionStub,
+};

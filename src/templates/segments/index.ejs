@@ -1,0 +1,25 @@
+<% if (!isLayerPage) { -%>
+import { config } from './config';
+<% if (hasModel) { -%>
+import { reducer, actions, selectors, sagas, watcher } from './model';
+<% } -%>
+<% if (hasUI) { -%>
+
+export * from './ui';
+<% } -%>
+
+/** Модель <%= sliceTitleInLowerCase %> */
+export const <%= sliceNameInCamelCase %>Model = {
+  config,
+<% if (hasModel) { -%>
+  reducer,
+  actions,
+  selectors,
+  sagas,
+  watcher,
+<% } -%>
+};
+<% } -%>
+<% if (isLayerPage && hasUI) { -%>
+export { <%= sliceNameInPascalCase %> } from './ui/<%= sliceNameInPascalCase %>';
+<% } -%>

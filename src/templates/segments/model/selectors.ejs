@@ -1,0 +1,19 @@
+import {
+  createHookSelector,
+  createModelSelector,
+  declareModelStateType,
+} from '@shared/lib/store';
+
+import { config } from '../config';
+import { ModelState } from './types';
+
+/** Селектор поля */
+const modelStateSelector = createModelSelector({
+  stateType: declareModelStateType<ModelState>(),
+  name: config.modelName,
+});
+
+/** Селекторы */
+export const selectors = {
+  useStepData: createHookSelector(modelStateSelector),
+};

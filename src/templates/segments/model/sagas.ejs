@@ -1,0 +1,28 @@
+import { SagaIterator } from 'redux-saga';
+import { all, takeEvery } from 'redux-saga/effects';
+
+import { composeSaga } from '@shared/lib/store';
+import { loader } from '@shared/lib/store-loader';
+
+import { config } from '../config';
+import { actions } from './ducks';
+
+/**
+ * Заглушка
+ * @returns {void}
+ */
+function* stub(): SagaIterator<void> {}
+
+export const sagas = {
+  stub: composeSaga(stub, [
+    loader(config.loaders.stub),
+  ]),
+};
+
+/**
+ * Watcher
+ * @returns {void}
+ */
+export function* watcher(): SagaIterator<void> {
+  yield all([takeEvery(actions.actionStub, sagas.stub)]);
+};
